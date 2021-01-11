@@ -1,0 +1,9 @@
+﻿[frmProduct.CDProdutos]
+Visible=False
+
+[frmOrder.CDOrder]
+Visible=False
+
+[frmSell.CDOrder]
+Visible=False
+
