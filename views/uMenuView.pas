@@ -51,13 +51,19 @@ type
     { Private declarations }
     FActiveFrame : TFrame;
     FMsgActive : boolean;
+    //Seleciona titulo correspondente a tela aberta
     procedure WriteTitle(aFrame: TComponentClass);
+    //Esconde lateral do menu, para tela de venda
     procedure FullMenu(aFrame: TComponentClass);
+    //Fecha form
     procedure ExitForm;
   public
     { Public declarations }
+    //Bloqueia form quando a mensagem estiver ativa
     procedure SetMsgActive(aMsgActive: boolean);
+    //Abre o form de forma genetica
     procedure FrameOpen(aFrame: TComponentClass);
+    //DIferente tipos de mensagens
     procedure MsgInformation(aTitulo:string;aMessage: string;aOk:TEvent=nil;aNao:TEvent=nil);
     procedure MsgErro(aMessage: string;aOk:TEvent);
     procedure MsgSucesso(aMessage: string;aOk:TEvent);

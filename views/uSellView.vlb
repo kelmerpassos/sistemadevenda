@@ -115,3 +115,6 @@ Coordinates=270,161,53,51
 [btnConfirm]
 Coordinates=396,161,69,51
 
+[frmOrder.CDOrder]
+Visible=False
+

@@ -77,23 +77,40 @@ type
     FfrmProduct : TfrmProduct;
     FvlTot : Currency;
     Fediting : boolean;
+    //Limpa informações do lado esquerdo da view
     procedure ResetView;
+    //Abre a view que lista os clientes
     procedure OpenViewClient;
+    //Fecha a view que lista os clientes
     procedure CloseViewClient;
+    //Seleciona o cliente através da listagem
     function ConfirmViewClient: boolean;
+    //Abre a listagem de produtos
     procedure OpenViewProduct;
+    //Fecha a listagem de produtos
     procedure CloseViewProduct;
+    //Seleciona o produto através da listagem
     function ConfirmViewProduct: boolean;
+    //Configura textos dos botões
     procedure RefreshBtnTitle;
+    //Incluir um novo pedido
     procedure IncludOrder(aCodProd: integer; aNameProd: string;
       aVlUni:Currency; aQtd: integer);
+    //Edita um pedido
     procedure EditOrder(aVlUni:Currency; aQtd: integer);
+    //Deleta um pedido
     procedure DelOrder;
+    //Carrega as informações do produto selecionado
     function GetProduct(aCodProd: integer): boolean;
+    //Volta para menu principal
     procedure Back;
+    //Evento que captura o teclano do grid
     procedure GridViewOrderKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
+    //Carrega dados do produto, para edição
     procedure EditViewOrder;
+    //Configura view para edição ou não edição;
     procedure ChangeEditOrder(aEditing: boolean);
+    //Valida inserção no grid
     function Validate: boolean;
   public
     { Public declarations }
@@ -190,6 +207,8 @@ begin
       TfrmMenu(Owner).MsgSucesso('Sucesso ao incluir pedido',nil);
       CDOrder.EmptyDataSet;
       ResetView;
+      lbVlTot.Text := 'R$ 0,00';
+      FvlTot := 0;
     end
     else
       TfrmMenu(Owner).MsgErro('Erro ao incluir pedido',nil);
@@ -215,12 +234,12 @@ begin
     FvlTot := FvlTot + (aVlUni * aQtd) - lOldVlrTot;
     lbVlTot.Text := 'R$ '+FormatCurr('#.00',FvlTot);
     ResetView;
-    edtCodProd.SetFocus; 
+    edtCodProd.SetFocus;
     Fediting := false;
-    ChangeEditOrder(false); 
+    ChangeEditOrder(false);
   except
     TfrmMenu(Owner).MsgErro('Problema ao editar pedido!',nil);
-  end;  
+  end;
 end;
 
 procedure TfrmSell.EditViewOrder;
